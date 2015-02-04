@@ -1,0 +1,61 @@
+<html>
+	<head>
+		<title>Hello Twitter</title>
+		<script src="JQuery/jquery-1.11.1.min.js"></script>
+    	<script type="text/javascript">
+    	var url = "http://localhost:8080/";
+    	function loadTweets() {
+		
+		location.reload();
+		$.ajax({
+				async: false,
+				type: "GET",
+				  url: url,
+				 
+				});
+		
+	}
+	
+	function postTweet() {
+		
+		
+		var tweet = document.getElementById("tweet").value;
+		
+		if (tweet==null || tweet=="")
+		{alert("Tweet cannot be blank.");
+		}
+		
+		
+		else{
+		$.ajax({
+				async: false,
+				type: "POST",
+				  url: url+"post",
+				  data: JSON.stringify({"tweet":tweet}),
+				  contentType: 'application/json',
+				  dataType: 'json',
+				});
+		
+		alert("Tweet posted");
+		
+		}
+	}
+	
+	   </script>
+	
+	</head>
+	<body>
+		<h3>Hello, <span th:text="${twitterProfile.name}">Some User</span>!</h3>
+		
+		<h4>Timeline:</h4>
+		<button type="button" onclick="loadTweets()">Load Tweets!</button>
+		<ul>
+			<li th:each="tweet:${tweets}" th:text="${tweet.getText()}">Friend</li>
+		</ul>
+		
+		What's happening? <input type="text" name="tweet" id="tweet" maxlength="140"></input>
+        
+		<input type="submit" value="Tweet!" onclick="postTweet()"></input>
+		
+	</body>
+</html>

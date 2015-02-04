@@ -1,0 +1,36 @@
+buildscript {
+    repositories {
+        maven { url "https://repo.spring.io/libs-milestone" }
+        mavenLocal()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.10.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'ApiGateway'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    compile("org.springframework.social:spring-social-twitter")
+    compile("com.google.guava:guava:18.0")
+    compile("com.googlecode.json-simple:json-simple:1.1")
+    compile("org.springframework.boot:spring-boot-starter-data-gemfire")
+
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.11'
+}
