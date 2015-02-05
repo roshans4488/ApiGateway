@@ -20,6 +20,9 @@ jar {
 
 repositories {
     mavenCentral()
+      maven {
+        url "http://repo.springsource.org/gemstone-release-cache"
+    }
 }
 
 dependencies {
@@ -27,7 +30,7 @@ dependencies {
     compile("org.springframework.social:spring-social-twitter")
     compile("com.google.guava:guava:18.0")
     compile("com.googlecode.json-simple:json-simple:1.1")
-    compile("org.springframework.boot:spring-boot-starter-data-gemfire")
+    compile("org.springframework.boot:spring-boot-starter-data-gemfire:1.1.10.RELEASE")
 
 }
 
